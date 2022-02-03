@@ -1,0 +1,463 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "4311e929",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "file_name = \"Iris.csv\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "66eeab1f",
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [],
+   "source": [
+    "file_lines = []\n",
+    "\n",
+    "with open(file_name, \"r\") as input_file: \n",
+    "    for line in input_file:  \n",
+    "        file_lines.append(line)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "e219f9f2",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['Id,SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm,Species\\n', '1,5.1,3.5,1.4,0.2,Iris-setosa\\n', '2,4.9,3.0,1.4,0.2,Iris-setosa\\n', '3,4.7,3.2,1.3,0.2,Iris-setosa\\n', '4,4.6,3.1,1.5,0.2,Iris-setosa\\n', '5,5.0,3.6,1.4,0.2,Iris-setosa\\n', '6,5.4,3.9,1.7,0.4,Iris-setosa\\n', '7,4.6,3.4,1.4,0.3,Iris-setosa\\n', '8,5.0,3.4,1.5,0.2,Iris-setosa\\n', '9,4.4,2.9,1.4,0.2,Iris-setosa\\n', '10,4.9,3.1,1.5,0.1,Iris-setosa\\n', '11,5.4,3.7,1.5,0.2,Iris-setosa\\n', '12,4.8,3.4,1.6,0.2,Iris-setosa\\n', '13,4.8,3.0,1.4,0.1,Iris-setosa\\n', '14,4.3,3.0,1.1,0.1,Iris-setosa\\n', '15,5.8,4.0,1.2,0.2,Iris-setosa\\n', '16,5.7,4.4,1.5,0.4,Iris-setosa\\n', '17,5.4,3.9,1.3,0.4,Iris-setosa\\n', '18,5.1,3.5,1.4,0.3,Iris-setosa\\n', '19,5.7,3.8,1.7,0.3,Iris-setosa\\n', '20,5.1,3.8,1.5,0.3,Iris-setosa\\n', '21,5.4,3.4,1.7,0.2,Iris-setosa\\n', '22,5.1,3.7,1.5,0.4,Iris-setosa\\n', '23,4.6,3.6,1.0,0.2,Iris-setosa\\n', '24,5.1,3.3,1.7,0.5,Iris-setosa\\n', '25,4.8,3.4,1.9,0.2,Iris-setosa\\n', '26,5.0,3.0,1.6,0.2,Iris-setosa\\n', '27,5.0,3.4,1.6,0.4,Iris-setosa\\n', '28,5.2,3.5,1.5,0.2,Iris-setosa\\n', '29,5.2,3.4,1.4,0.2,Iris-setosa\\n', '30,4.7,3.2,1.6,0.2,Iris-setosa\\n', '31,4.8,3.1,1.6,0.2,Iris-setosa\\n', '32,5.4,3.4,1.5,0.4,Iris-setosa\\n', '33,5.2,4.1,1.5,0.1,Iris-setosa\\n', '34,5.5,4.2,1.4,0.2,Iris-setosa\\n', '35,4.9,3.1,1.5,0.1,Iris-setosa\\n', '36,5.0,3.2,1.2,0.2,Iris-setosa\\n', '37,5.5,3.5,1.3,0.2,Iris-setosa\\n', '38,4.9,3.1,1.5,0.1,Iris-setosa\\n', '39,4.4,3.0,1.3,0.2,Iris-setosa\\n', '40,5.1,3.4,1.5,0.2,Iris-setosa\\n', '41,5.0,3.5,1.3,0.3,Iris-setosa\\n', '42,4.5,2.3,1.3,0.3,Iris-setosa\\n', '43,4.4,3.2,1.3,0.2,Iris-setosa\\n', '44,5.0,3.5,1.6,0.6,Iris-setosa\\n', '45,5.1,3.8,1.9,0.4,Iris-setosa\\n', '46,4.8,3.0,1.4,0.3,Iris-setosa\\n', '47,5.1,3.8,1.6,0.2,Iris-setosa\\n', '48,4.6,3.2,1.4,0.2,Iris-setosa\\n', '49,5.3,3.7,1.5,0.2,Iris-setosa\\n', '50,5.0,3.3,1.4,0.2,Iris-setosa\\n', '51,7.0,3.2,4.7,1.4,Iris-versicolor\\n', '52,6.4,3.2,4.5,1.5,Iris-versicolor\\n', '53,6.9,3.1,4.9,1.5,Iris-versicolor\\n', '54,5.5,2.3,4.0,1.3,Iris-versicolor\\n', '55,6.5,2.8,4.6,1.5,Iris-versicolor\\n', '56,5.7,2.8,4.5,1.3,Iris-versicolor\\n', '57,6.3,3.3,4.7,1.6,Iris-versicolor\\n', '58,4.9,2.4,3.3,1.0,Iris-versicolor\\n', '59,6.6,2.9,4.6,1.3,Iris-versicolor\\n', '60,5.2,2.7,3.9,1.4,Iris-versicolor\\n', '61,5.0,2.0,3.5,1.0,Iris-versicolor\\n', '62,5.9,3.0,4.2,1.5,Iris-versicolor\\n', '63,6.0,2.2,4.0,1.0,Iris-versicolor\\n', '64,6.1,2.9,4.7,1.4,Iris-versicolor\\n', '65,5.6,2.9,3.6,1.3,Iris-versicolor\\n', '66,6.7,3.1,4.4,1.4,Iris-versicolor\\n', '67,5.6,3.0,4.5,1.5,Iris-versicolor\\n', '68,5.8,2.7,4.1,1.0,Iris-versicolor\\n', '69,6.2,2.2,4.5,1.5,Iris-versicolor\\n', '70,5.6,2.5,3.9,1.1,Iris-versicolor\\n', '71,5.9,3.2,4.8,1.8,Iris-versicolor\\n', '72,6.1,2.8,4.0,1.3,Iris-versicolor\\n', '73,6.3,2.5,4.9,1.5,Iris-versicolor\\n', '74,6.1,2.8,4.7,1.2,Iris-versicolor\\n', '75,6.4,2.9,4.3,1.3,Iris-versicolor\\n', '76,6.6,3.0,4.4,1.4,Iris-versicolor\\n', '77,6.8,2.8,4.8,1.4,Iris-versicolor\\n', '78,6.7,3.0,5.0,1.7,Iris-versicolor\\n', '79,6.0,2.9,4.5,1.5,Iris-versicolor\\n', '80,5.7,2.6,3.5,1.0,Iris-versicolor\\n', '81,5.5,2.4,3.8,1.1,Iris-versicolor\\n', '82,5.5,2.4,3.7,1.0,Iris-versicolor\\n', '83,5.8,2.7,3.9,1.2,Iris-versicolor\\n', '84,6.0,2.7,5.1,1.6,Iris-versicolor\\n', '85,5.4,3.0,4.5,1.5,Iris-versicolor\\n', '86,6.0,3.4,4.5,1.6,Iris-versicolor\\n', '87,6.7,3.1,4.7,1.5,Iris-versicolor\\n', '88,6.3,2.3,4.4,1.3,Iris-versicolor\\n', '89,5.6,3.0,4.1,1.3,Iris-versicolor\\n', '90,5.5,2.5,4.0,1.3,Iris-versicolor\\n', '91,5.5,2.6,4.4,1.2,Iris-versicolor\\n', '92,6.1,3.0,4.6,1.4,Iris-versicolor\\n', '93,5.8,2.6,4.0,1.2,Iris-versicolor\\n', '94,5.0,2.3,3.3,1.0,Iris-versicolor\\n', '95,5.6,2.7,4.2,1.3,Iris-versicolor\\n', '96,5.7,3.0,4.2,1.2,Iris-versicolor\\n', '97,5.7,2.9,4.2,1.3,Iris-versicolor\\n', '98,6.2,2.9,4.3,1.3,Iris-versicolor\\n', '99,5.1,2.5,3.0,1.1,Iris-versicolor\\n', '100,5.7,2.8,4.1,1.3,Iris-versicolor\\n', '101,6.3,3.3,6.0,2.5,Iris-virginica\\n', '102,5.8,2.7,5.1,1.9,Iris-virginica\\n', '103,7.1,3.0,5.9,2.1,Iris-virginica\\n', '104,6.3,2.9,5.6,1.8,Iris-virginica\\n', '105,6.5,3.0,5.8,2.2,Iris-virginica\\n', '106,7.6,3.0,6.6,2.1,Iris-virginica\\n', '107,4.9,2.5,4.5,1.7,Iris-virginica\\n', '108,7.3,2.9,6.3,1.8,Iris-virginica\\n', '109,6.7,2.5,5.8,1.8,Iris-virginica\\n', '110,7.2,3.6,6.1,2.5,Iris-virginica\\n', '111,6.5,3.2,5.1,2.0,Iris-virginica\\n', '112,6.4,2.7,5.3,1.9,Iris-virginica\\n', '113,6.8,3.0,5.5,2.1,Iris-virginica\\n', '114,5.7,2.5,5.0,2.0,Iris-virginica\\n', '115,5.8,2.8,5.1,2.4,Iris-virginica\\n', '116,6.4,3.2,5.3,2.3,Iris-virginica\\n', '117,6.5,3.0,5.5,1.8,Iris-virginica\\n', '118,7.7,3.8,6.7,2.2,Iris-virginica\\n', '119,7.7,2.6,6.9,2.3,Iris-virginica\\n', '120,6.0,2.2,5.0,1.5,Iris-virginica\\n', '121,6.9,3.2,5.7,2.3,Iris-virginica\\n', '122,5.6,2.8,4.9,2.0,Iris-virginica\\n', '123,7.7,2.8,6.7,2.0,Iris-virginica\\n', '124,6.3,2.7,4.9,1.8,Iris-virginica\\n', '125,6.7,3.3,5.7,2.1,Iris-virginica\\n', '126,7.2,3.2,6.0,1.8,Iris-virginica\\n', '127,6.2,2.8,4.8,1.8,Iris-virginica\\n', '128,6.1,3.0,4.9,1.8,Iris-virginica\\n', '129,6.4,2.8,5.6,2.1,Iris-virginica\\n', '130,7.2,3.0,5.8,1.6,Iris-virginica\\n', '131,7.4,2.8,6.1,1.9,Iris-virginica\\n', '132,7.9,3.8,6.4,2.0,Iris-virginica\\n', '133,6.4,2.8,5.6,2.2,Iris-virginica\\n', '134,6.3,2.8,5.1,1.5,Iris-virginica\\n', '135,6.1,2.6,5.6,1.4,Iris-virginica\\n', '136,7.7,3.0,6.1,2.3,Iris-virginica\\n', '137,6.3,3.4,5.6,2.4,Iris-virginica\\n', '138,6.4,3.1,5.5,1.8,Iris-virginica\\n', '139,6.0,3.0,4.8,1.8,Iris-virginica\\n', '140,6.9,3.1,5.4,2.1,Iris-virginica\\n', '141,6.7,3.1,5.6,2.4,Iris-virginica\\n', '142,6.9,3.1,5.1,2.3,Iris-virginica\\n', '143,5.8,2.7,5.1,1.9,Iris-virginica\\n', '144,6.8,3.2,5.9,2.3,Iris-virginica\\n', '145,6.7,3.3,5.7,2.5,Iris-virginica\\n', '146,6.7,3.0,5.2,2.3,Iris-virginica\\n', '147,6.3,2.5,5.0,1.9,Iris-virginica\\n', '148,6.5,3.0,5.2,2.0,Iris-virginica\\n', '149,6.2,3.4,5.4,2.3,Iris-virginica\\n', '150,5.9,3.0,5.1,1.8,Iris-virginica\\n']\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(file_lines)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "1f48a254",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'list'>\n"
+     ]
+    }
+   ],
+   "source": [
+    "print (type(file_lines))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "820e8e08",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'150,5.9,3.0,5.1,1.8,Iris-virginica\\n'"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "file_lines[-1]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "51984f2d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import csv"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "e5644fb8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "file_lines = []\n",
+    "\n",
+    "with open(file_name, \"r\") as input_file:\n",
+    "    \n",
+    "    input_file_reader = csv.reader(input_file, delimiter=\",\")\n",
+    "    \n",
+    "    for line in input_file_reader:\n",
+    "        file_lines.append(line)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "a9378212",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[['Id', 'SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm', 'Species'], ['1', '5.1', '3.5', '1.4', '0.2', 'Iris-setosa'], ['2', '4.9', '3.0', '1.4', '0.2', 'Iris-setosa'], ['3', '4.7', '3.2', '1.3', '0.2', 'Iris-setosa'], ['4', '4.6', '3.1', '1.5', '0.2', 'Iris-setosa'], ['5', '5.0', '3.6', '1.4', '0.2', 'Iris-setosa'], ['6', '5.4', '3.9', '1.7', '0.4', 'Iris-setosa'], ['7', '4.6', '3.4', '1.4', '0.3', 'Iris-setosa'], ['8', '5.0', '3.4', '1.5', '0.2', 'Iris-setosa'], ['9', '4.4', '2.9', '1.4', '0.2', 'Iris-setosa'], ['10', '4.9', '3.1', '1.5', '0.1', 'Iris-setosa'], ['11', '5.4', '3.7', '1.5', '0.2', 'Iris-setosa'], ['12', '4.8', '3.4', '1.6', '0.2', 'Iris-setosa'], ['13', '4.8', '3.0', '1.4', '0.1', 'Iris-setosa'], ['14', '4.3', '3.0', '1.1', '0.1', 'Iris-setosa'], ['15', '5.8', '4.0', '1.2', '0.2', 'Iris-setosa'], ['16', '5.7', '4.4', '1.5', '0.4', 'Iris-setosa'], ['17', '5.4', '3.9', '1.3', '0.4', 'Iris-setosa'], ['18', '5.1', '3.5', '1.4', '0.3', 'Iris-setosa'], ['19', '5.7', '3.8', '1.7', '0.3', 'Iris-setosa'], ['20', '5.1', '3.8', '1.5', '0.3', 'Iris-setosa'], ['21', '5.4', '3.4', '1.7', '0.2', 'Iris-setosa'], ['22', '5.1', '3.7', '1.5', '0.4', 'Iris-setosa'], ['23', '4.6', '3.6', '1.0', '0.2', 'Iris-setosa'], ['24', '5.1', '3.3', '1.7', '0.5', 'Iris-setosa'], ['25', '4.8', '3.4', '1.9', '0.2', 'Iris-setosa'], ['26', '5.0', '3.0', '1.6', '0.2', 'Iris-setosa'], ['27', '5.0', '3.4', '1.6', '0.4', 'Iris-setosa'], ['28', '5.2', '3.5', '1.5', '0.2', 'Iris-setosa'], ['29', '5.2', '3.4', '1.4', '0.2', 'Iris-setosa'], ['30', '4.7', '3.2', '1.6', '0.2', 'Iris-setosa'], ['31', '4.8', '3.1', '1.6', '0.2', 'Iris-setosa'], ['32', '5.4', '3.4', '1.5', '0.4', 'Iris-setosa'], ['33', '5.2', '4.1', '1.5', '0.1', 'Iris-setosa'], ['34', '5.5', '4.2', '1.4', '0.2', 'Iris-setosa'], ['35', '4.9', '3.1', '1.5', '0.1', 'Iris-setosa'], ['36', '5.0', '3.2', '1.2', '0.2', 'Iris-setosa'], ['37', '5.5', '3.5', '1.3', '0.2', 'Iris-setosa'], ['38', '4.9', '3.1', '1.5', '0.1', 'Iris-setosa'], ['39', '4.4', '3.0', '1.3', '0.2', 'Iris-setosa'], ['40', '5.1', '3.4', '1.5', '0.2', 'Iris-setosa'], ['41', '5.0', '3.5', '1.3', '0.3', 'Iris-setosa'], ['42', '4.5', '2.3', '1.3', '0.3', 'Iris-setosa'], ['43', '4.4', '3.2', '1.3', '0.2', 'Iris-setosa'], ['44', '5.0', '3.5', '1.6', '0.6', 'Iris-setosa'], ['45', '5.1', '3.8', '1.9', '0.4', 'Iris-setosa'], ['46', '4.8', '3.0', '1.4', '0.3', 'Iris-setosa'], ['47', '5.1', '3.8', '1.6', '0.2', 'Iris-setosa'], ['48', '4.6', '3.2', '1.4', '0.2', 'Iris-setosa'], ['49', '5.3', '3.7', '1.5', '0.2', 'Iris-setosa'], ['50', '5.0', '3.3', '1.4', '0.2', 'Iris-setosa'], ['51', '7.0', '3.2', '4.7', '1.4', 'Iris-versicolor'], ['52', '6.4', '3.2', '4.5', '1.5', 'Iris-versicolor'], ['53', '6.9', '3.1', '4.9', '1.5', 'Iris-versicolor'], ['54', '5.5', '2.3', '4.0', '1.3', 'Iris-versicolor'], ['55', '6.5', '2.8', '4.6', '1.5', 'Iris-versicolor'], ['56', '5.7', '2.8', '4.5', '1.3', 'Iris-versicolor'], ['57', '6.3', '3.3', '4.7', '1.6', 'Iris-versicolor'], ['58', '4.9', '2.4', '3.3', '1.0', 'Iris-versicolor'], ['59', '6.6', '2.9', '4.6', '1.3', 'Iris-versicolor'], ['60', '5.2', '2.7', '3.9', '1.4', 'Iris-versicolor'], ['61', '5.0', '2.0', '3.5', '1.0', 'Iris-versicolor'], ['62', '5.9', '3.0', '4.2', '1.5', 'Iris-versicolor'], ['63', '6.0', '2.2', '4.0', '1.0', 'Iris-versicolor'], ['64', '6.1', '2.9', '4.7', '1.4', 'Iris-versicolor'], ['65', '5.6', '2.9', '3.6', '1.3', 'Iris-versicolor'], ['66', '6.7', '3.1', '4.4', '1.4', 'Iris-versicolor'], ['67', '5.6', '3.0', '4.5', '1.5', 'Iris-versicolor'], ['68', '5.8', '2.7', '4.1', '1.0', 'Iris-versicolor'], ['69', '6.2', '2.2', '4.5', '1.5', 'Iris-versicolor'], ['70', '5.6', '2.5', '3.9', '1.1', 'Iris-versicolor'], ['71', '5.9', '3.2', '4.8', '1.8', 'Iris-versicolor'], ['72', '6.1', '2.8', '4.0', '1.3', 'Iris-versicolor'], ['73', '6.3', '2.5', '4.9', '1.5', 'Iris-versicolor'], ['74', '6.1', '2.8', '4.7', '1.2', 'Iris-versicolor'], ['75', '6.4', '2.9', '4.3', '1.3', 'Iris-versicolor'], ['76', '6.6', '3.0', '4.4', '1.4', 'Iris-versicolor'], ['77', '6.8', '2.8', '4.8', '1.4', 'Iris-versicolor'], ['78', '6.7', '3.0', '5.0', '1.7', 'Iris-versicolor'], ['79', '6.0', '2.9', '4.5', '1.5', 'Iris-versicolor'], ['80', '5.7', '2.6', '3.5', '1.0', 'Iris-versicolor'], ['81', '5.5', '2.4', '3.8', '1.1', 'Iris-versicolor'], ['82', '5.5', '2.4', '3.7', '1.0', 'Iris-versicolor'], ['83', '5.8', '2.7', '3.9', '1.2', 'Iris-versicolor'], ['84', '6.0', '2.7', '5.1', '1.6', 'Iris-versicolor'], ['85', '5.4', '3.0', '4.5', '1.5', 'Iris-versicolor'], ['86', '6.0', '3.4', '4.5', '1.6', 'Iris-versicolor'], ['87', '6.7', '3.1', '4.7', '1.5', 'Iris-versicolor'], ['88', '6.3', '2.3', '4.4', '1.3', 'Iris-versicolor'], ['89', '5.6', '3.0', '4.1', '1.3', 'Iris-versicolor'], ['90', '5.5', '2.5', '4.0', '1.3', 'Iris-versicolor'], ['91', '5.5', '2.6', '4.4', '1.2', 'Iris-versicolor'], ['92', '6.1', '3.0', '4.6', '1.4', 'Iris-versicolor'], ['93', '5.8', '2.6', '4.0', '1.2', 'Iris-versicolor'], ['94', '5.0', '2.3', '3.3', '1.0', 'Iris-versicolor'], ['95', '5.6', '2.7', '4.2', '1.3', 'Iris-versicolor'], ['96', '5.7', '3.0', '4.2', '1.2', 'Iris-versicolor'], ['97', '5.7', '2.9', '4.2', '1.3', 'Iris-versicolor'], ['98', '6.2', '2.9', '4.3', '1.3', 'Iris-versicolor'], ['99', '5.1', '2.5', '3.0', '1.1', 'Iris-versicolor'], ['100', '5.7', '2.8', '4.1', '1.3', 'Iris-versicolor'], ['101', '6.3', '3.3', '6.0', '2.5', 'Iris-virginica'], ['102', '5.8', '2.7', '5.1', '1.9', 'Iris-virginica'], ['103', '7.1', '3.0', '5.9', '2.1', 'Iris-virginica'], ['104', '6.3', '2.9', '5.6', '1.8', 'Iris-virginica'], ['105', '6.5', '3.0', '5.8', '2.2', 'Iris-virginica'], ['106', '7.6', '3.0', '6.6', '2.1', 'Iris-virginica'], ['107', '4.9', '2.5', '4.5', '1.7', 'Iris-virginica'], ['108', '7.3', '2.9', '6.3', '1.8', 'Iris-virginica'], ['109', '6.7', '2.5', '5.8', '1.8', 'Iris-virginica'], ['110', '7.2', '3.6', '6.1', '2.5', 'Iris-virginica'], ['111', '6.5', '3.2', '5.1', '2.0', 'Iris-virginica'], ['112', '6.4', '2.7', '5.3', '1.9', 'Iris-virginica'], ['113', '6.8', '3.0', '5.5', '2.1', 'Iris-virginica'], ['114', '5.7', '2.5', '5.0', '2.0', 'Iris-virginica'], ['115', '5.8', '2.8', '5.1', '2.4', 'Iris-virginica'], ['116', '6.4', '3.2', '5.3', '2.3', 'Iris-virginica'], ['117', '6.5', '3.0', '5.5', '1.8', 'Iris-virginica'], ['118', '7.7', '3.8', '6.7', '2.2', 'Iris-virginica'], ['119', '7.7', '2.6', '6.9', '2.3', 'Iris-virginica'], ['120', '6.0', '2.2', '5.0', '1.5', 'Iris-virginica'], ['121', '6.9', '3.2', '5.7', '2.3', 'Iris-virginica'], ['122', '5.6', '2.8', '4.9', '2.0', 'Iris-virginica'], ['123', '7.7', '2.8', '6.7', '2.0', 'Iris-virginica'], ['124', '6.3', '2.7', '4.9', '1.8', 'Iris-virginica'], ['125', '6.7', '3.3', '5.7', '2.1', 'Iris-virginica'], ['126', '7.2', '3.2', '6.0', '1.8', 'Iris-virginica'], ['127', '6.2', '2.8', '4.8', '1.8', 'Iris-virginica'], ['128', '6.1', '3.0', '4.9', '1.8', 'Iris-virginica'], ['129', '6.4', '2.8', '5.6', '2.1', 'Iris-virginica'], ['130', '7.2', '3.0', '5.8', '1.6', 'Iris-virginica'], ['131', '7.4', '2.8', '6.1', '1.9', 'Iris-virginica'], ['132', '7.9', '3.8', '6.4', '2.0', 'Iris-virginica'], ['133', '6.4', '2.8', '5.6', '2.2', 'Iris-virginica'], ['134', '6.3', '2.8', '5.1', '1.5', 'Iris-virginica'], ['135', '6.1', '2.6', '5.6', '1.4', 'Iris-virginica'], ['136', '7.7', '3.0', '6.1', '2.3', 'Iris-virginica'], ['137', '6.3', '3.4', '5.6', '2.4', 'Iris-virginica'], ['138', '6.4', '3.1', '5.5', '1.8', 'Iris-virginica'], ['139', '6.0', '3.0', '4.8', '1.8', 'Iris-virginica'], ['140', '6.9', '3.1', '5.4', '2.1', 'Iris-virginica'], ['141', '6.7', '3.1', '5.6', '2.4', 'Iris-virginica'], ['142', '6.9', '3.1', '5.1', '2.3', 'Iris-virginica'], ['143', '5.8', '2.7', '5.1', '1.9', 'Iris-virginica'], ['144', '6.8', '3.2', '5.9', '2.3', 'Iris-virginica'], ['145', '6.7', '3.3', '5.7', '2.5', 'Iris-virginica'], ['146', '6.7', '3.0', '5.2', '2.3', 'Iris-virginica'], ['147', '6.3', '2.5', '5.0', '1.9', 'Iris-virginica'], ['148', '6.5', '3.0', '5.2', '2.0', 'Iris-virginica'], ['149', '6.2', '3.4', '5.4', '2.3', 'Iris-virginica'], ['150', '5.9', '3.0', '5.1', '1.8', 'Iris-virginica']]\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(file_lines)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "7328ec8c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'list'>\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(type(file_lines))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "2f94ee4f",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'3.0'"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "file_lines[-1][2]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "289193c0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "27697aea",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df = pd.read_csv(\"Iris.csv\", delimiter=\",\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "00520c5a",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Id</th>\n",
+       "      <th>SepalLengthCm</th>\n",
+       "      <th>SepalWidthCm</th>\n",
+       "      <th>PetalLengthCm</th>\n",
+       "      <th>PetalWidthCm</th>\n",
+       "      <th>Species</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>5.1</td>\n",
+       "      <td>3.5</td>\n",
+       "      <td>1.4</td>\n",
+       "      <td>0.2</td>\n",
+       "      <td>Iris-setosa</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>2</td>\n",
+       "      <td>4.9</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>1.4</td>\n",
+       "      <td>0.2</td>\n",
+       "      <td>Iris-setosa</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>3</td>\n",
+       "      <td>4.7</td>\n",
+       "      <td>3.2</td>\n",
+       "      <td>1.3</td>\n",
+       "      <td>0.2</td>\n",
+       "      <td>Iris-setosa</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>4</td>\n",
+       "      <td>4.6</td>\n",
+       "      <td>3.1</td>\n",
+       "      <td>1.5</td>\n",
+       "      <td>0.2</td>\n",
+       "      <td>Iris-setosa</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>5</td>\n",
+       "      <td>5.0</td>\n",
+       "      <td>3.6</td>\n",
+       "      <td>1.4</td>\n",
+       "      <td>0.2</td>\n",
+       "      <td>Iris-setosa</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>145</th>\n",
+       "      <td>146</td>\n",
+       "      <td>6.7</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>5.2</td>\n",
+       "      <td>2.3</td>\n",
+       "      <td>Iris-virginica</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>146</th>\n",
+       "      <td>147</td>\n",
+       "      <td>6.3</td>\n",
+       "      <td>2.5</td>\n",
+       "      <td>5.0</td>\n",
+       "      <td>1.9</td>\n",
+       "      <td>Iris-virginica</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>147</th>\n",
+       "      <td>148</td>\n",
+       "      <td>6.5</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>5.2</td>\n",
+       "      <td>2.0</td>\n",
+       "      <td>Iris-virginica</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>148</th>\n",
+       "      <td>149</td>\n",
+       "      <td>6.2</td>\n",
+       "      <td>3.4</td>\n",
+       "      <td>5.4</td>\n",
+       "      <td>2.3</td>\n",
+       "      <td>Iris-virginica</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>149</th>\n",
+       "      <td>150</td>\n",
+       "      <td>5.9</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>5.1</td>\n",
+       "      <td>1.8</td>\n",
+       "      <td>Iris-virginica</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>150 rows × 6 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "      Id  SepalLengthCm  SepalWidthCm  PetalLengthCm  PetalWidthCm  \\\n",
+       "0      1            5.1           3.5            1.4           0.2   \n",
+       "1      2            4.9           3.0            1.4           0.2   \n",
+       "2      3            4.7           3.2            1.3           0.2   \n",
+       "3      4            4.6           3.1            1.5           0.2   \n",
+       "4      5            5.0           3.6            1.4           0.2   \n",
+       "..   ...            ...           ...            ...           ...   \n",
+       "145  146            6.7           3.0            5.2           2.3   \n",
+       "146  147            6.3           2.5            5.0           1.9   \n",
+       "147  148            6.5           3.0            5.2           2.0   \n",
+       "148  149            6.2           3.4            5.4           2.3   \n",
+       "149  150            5.9           3.0            5.1           1.8   \n",
+       "\n",
+       "            Species  \n",
+       "0       Iris-setosa  \n",
+       "1       Iris-setosa  \n",
+       "2       Iris-setosa  \n",
+       "3       Iris-setosa  \n",
+       "4       Iris-setosa  \n",
+       "..              ...  \n",
+       "145  Iris-virginica  \n",
+       "146  Iris-virginica  \n",
+       "147  Iris-virginica  \n",
+       "148  Iris-virginica  \n",
+       "149  Iris-virginica  \n",
+       "\n",
+       "[150 rows x 6 columns]"
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "595ab86b",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'Iris-setosa'"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[\"Species\"][8]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "38e1a053",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import seaborn as sns"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "289d5c97",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<AxesSubplot:xlabel='Species', ylabel='PetalLengthCm'>"
+      ]
+     },
+     "execution_count": 19,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "sns.scatterplot(data=df, x=\"Species\", y=\"PetalLengthCm\", hue=\"SepalLengthCm\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0101cff3",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
